@@ -1,31 +1,38 @@
-import pygame, sys, random
+import pygame, sys, random, os
 from pygame.math import Vector2
 
 class SNAKE:
     def __init__(self):
+        
+        # Get the directory where the script is located
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+
         self.body = [Vector2(5,10), Vector2(4,10), Vector2(3,10)]
         self.direction = Vector2(1,0)
         self.new_block = False
-        self.head_up = pygame.image.load('/Users/bqqsim/projies/snakeGame!/head_up.png').convert_alpha()
-        self.head_down = pygame.image.load('/Users/bqqsim/projies/snakeGame!/head_down.png').convert_alpha()
-        self.head_right = pygame.image.load('/Users/bqqsim/projies/snakeGame!/head_right.png').convert_alpha()
-        self.head_left = pygame.image.load('/Users/bqqsim/projies/snakeGame!/head_left.png').convert_alpha()
 
-        self.tail_up = pygame.image.load('/Users/bqqsim/projies/snakeGame!/tail_down.png').convert_alpha()
-        self.tail_down = pygame.image.load('/Users/bqqsim/projies/snakeGame!/tail_up.png').convert_alpha()
-        self.tail_right = pygame.image.load('/Users/bqqsim/projies/snakeGame!/tail_right.png').convert_alpha()
-        self.tail_left = pygame.image.load('/Users/bqqsim/projies/snakeGame!/tail_left.png').convert_alpha()
+        # Sprites
+        self.head_up = pygame.image.load(os.path.join(script_dir, 'spriteAssets/head_up.png')).convert_alpha()
+        self.head_down = pygame.image.load(os.path.join(script_dir, 'spriteAssets/head_down.png')).convert_alpha()
+        self.head_right = pygame.image.load(os.path.join(script_dir, 'spriteAssets/head_right.png')).convert_alpha()
+        self.head_left = pygame.image.load(os.path.join(script_dir, 'spriteAssets/head_left.png')).convert_alpha()
 
-        self.body_vertical = pygame.image.load('/Users/bqqsim/projies/snakeGame!/body_vertical.png').convert_alpha()
-        self.body_horizontal = pygame.image.load('/Users/bqqsim/projies/snakeGame!/body_horizontal.png').convert_alpha()
+        self.tail_up = pygame.image.load(os.path.join(script_dir, 'spriteAssets/tail_down.png')).convert_alpha()
+        self.tail_down = pygame.image.load(os.path.join(script_dir, 'spriteAssets/tail_up.png')).convert_alpha()
+        self.tail_right = pygame.image.load(os.path.join(script_dir, 'spriteAssets/tail_right.png')).convert_alpha()
+        self.tail_left = pygame.image.load(os.path.join(script_dir, 'spriteAssets/tail_left.png')).convert_alpha()
 
-        self.body_topright = pygame.image.load('/Users/bqqsim/projies/snakeGame!/body_topright.png').convert_alpha()
-        self.body_topleft = pygame.image.load('/Users/bqqsim/projies/snakeGame!/body_topleft.png').convert_alpha()
-        self.body_bottomright = pygame.image.load('/Users/bqqsim/projies/snakeGame!/body_bottomright.png').convert_alpha()
-        self.body_bottomleft = pygame.image.load('/Users/bqqsim/projies/snakeGame!/body_bottomleft.png').convert_alpha()
+        self.body_vertical = pygame.image.load(os.path.join(script_dir, 'spriteAssets/body_vertical.png')).convert_alpha()
+        self.body_horizontal = pygame.image.load(os.path.join(script_dir, 'spriteAssets/body_horizontal.png')).convert_alpha()
 
-        self.crunch_sound = pygame.mixer.Sound('/Users/bqqsim/projies/snakeGame!/smw_coin.wav')
-        self.die_sound = pygame.mixer.Sound('/Users/bqqsim/projies/snakeGame!/smw_koopa_kid_falls_into_lava.wav')
+        self.body_topright = pygame.image.load(os.path.join(script_dir, 'spriteAssets/body_topright.png')).convert_alpha()
+        self.body_topleft = pygame.image.load(os.path.join(script_dir, 'spriteAssets/body_topleft.png')).convert_alpha()
+        self.body_bottomright = pygame.image.load(os.path.join(script_dir, 'spriteAssets/body_bottomright.png')).convert_alpha()
+        self.body_bottomleft = pygame.image.load(os.path.join(script_dir, 'spriteAssets/body_bottomleft.png')).convert_alpha()
+
+        # Sounds
+        self.crunch_sound = pygame.mixer.Sound(os.path.join(script_dir, 'soundFontAssets/smw_coin.wav'))
+        self.die_sound = pygame.mixer.Sound(os.path.join(script_dir, 'soundFontAssets/smw_koopa_kid_falls_into_lava.wav'))
 
     def draw_snake(self):
         self.update_head_graphics()
@@ -194,9 +201,9 @@ cell_num = 20
 #40 and 20
 screen = pygame.display.set_mode((cell_num * cell_size,cell_num * cell_size))
 clock = pygame.time.Clock()
-fraudBoy = pygame.image.load('/Users/bqqsim/projies/snakeGame!/eatme.jpg').convert_alpha()
+fraudBoy = pygame.image.load('/Users/bqqsim/projies/snakeGame!/spriteAssets/eatme.jpg').convert_alpha()
 fraudBoy = pygame.transform.scale(fraudBoy, (cell_size * int(1.5), cell_size * int(1.5)))
-gameFont = pygame.font.Font('/Users/bqqsim/projies/snakeGame!/osaka-re.ttf', 40)
+gameFont = pygame.font.Font('/Users/bqqsim/projies/snakeGame!/soundFontAssets/osaka-re.ttf', 40)
 
 
 test_surface = pygame.Surface((100,200))
